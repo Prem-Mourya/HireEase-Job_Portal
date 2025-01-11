@@ -8,6 +8,8 @@ import JobPage from './pages/job';
 import PostJob from './pages/post';
 import SavedJobs from './pages/saved-job';
 import { ThemeProvider } from './components/theme-provider';
+import ProtectedRoutes from './components/protected-routes';
+import MyJobs from './pages/my-jobs';
 
 function App() {
 
@@ -21,24 +23,44 @@ function App() {
         },
         {
           path: "/onboarding",
-          element: <OnBoarding />,
+          element: (
+            <ProtectedRoutes>
+              <OnBoarding />
+            </ProtectedRoutes>
+          ),
         },
         {
           path: "/jobs",
-          element: <JobListing />,
+          element: (
+            <ProtectedRoutes>
+              <JobPage />
+            </ProtectedRoutes>
+          ),
         },
         {
           path: "/job/:id",
-          element: <JobPage />,
+          element: (
+            <ProtectedRoutes>
+              <MyJobs />
+            </ProtectedRoutes>
+          ),
         },
         {
           path: "/post-job",
-          element: <PostJob />,
+          element: (
+            <ProtectedRoutes>
+              <PostJob />
+            </ProtectedRoutes>
+          ),
         },
         {
           path: "/saved-job",
-          element: <SavedJobs />,
-        }
+          element: (
+            <ProtectedRoutes>
+              <SavedJobs />
+            </ProtectedRoutes>
+          ),
+        },
       ],
     },
   ]);
